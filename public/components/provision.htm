@@ -1,0 +1,35 @@
+<div ng-controller="provisionController">
+
+  <table>
+    <tr>
+      <td>amount</td>
+      <td><input type="number" ng-model="amount" /></td>
+    </tr>
+    <tr>
+      <td>currency</td>
+      <td><input type="text" ng-model="currency" /></td>
+    </tr>
+    <tr>
+      <td>installmentCount</td>
+      <td><input type="number" ng-model="installmentCount" /></td>
+    </tr>
+    <tr>
+      <td>paymentType</td>
+      <td><input type="text" ng-model="paymentType" /></td>
+    </tr>
+    <tr ng-show="selectedCard.cardId">
+      <td>cvc</td>
+      <td><input type="text" ng-model="cvc" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="button" value="Provision" ng-click="provision()" />
+      </td>
+    </tr>
+    <tr>
+      <td>referenceNumber</td>
+      <td><input type="text" ng-model="referenceNumber" /></td>
+    </tr>
+  </table>
+
+</div>

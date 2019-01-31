@@ -1,0 +1,80 @@
+<div ng-controller="provisionForMarketPlaceController">
+
+  <table>
+    <tr>
+      <td>amount</td>
+      <td><input type="number" ng-model="amount" /></td>
+    </tr>
+    <tr>
+      <td>currency</td>
+      <td><input type="text" ng-model="currency" /></td>
+    </tr>
+    <tr>
+      <td>installmentCount</td>
+      <td><input type="number" ng-model="installmentCount" /></td>
+    </tr>
+    <tr>
+      <td>paymentType</td>
+      <td><input type="text" ng-model="paymentType" /></td>
+    </tr>
+  </table>
+
+  <h2>Extra Parameters</h2>
+  <table ng-show="extraParameters.length > 0">
+    <thead>
+      <tr>
+        <th>key</th>
+        <th>value</th>
+        <th>
+
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="extraParameter in extraParameters">
+        <td><input type="text" ng-model="extraParameter.key" /></td>
+        <td><input type="text" ng-model="extraParameter.value" /></td>
+        <td><input type="button" value="Delete" ng-click="deleteExtraParameter(extraParameter)" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <input type="button" value="Add Extra Parameter" ng-click="addExtraParameter()" />
+
+  <h2>SubMerchants</h2>
+  <table ng-show="subMerchants.length > 0">
+    <thead>
+      <tr>
+        <th>subMerchantKey</th>
+        <th>subMerchantPrice</th>
+        <th>
+
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="subMerchant in subMerchants">
+        <td><input type="text" ng-model="subMerchant.subMerchantKey" /></td>
+        <td><input type="text" ng-model="subMerchant.subMerchantPrice" /></td>
+        <td><input type="button" value="Delete" ng-click="deleteSubMerchant(subMerchant)" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <input type="button" value="Add SubMercant" ng-click="addSubMerchant()" />
+  <br /><br />
+  <table>
+    <tr ng-show="selectedCard.cardId">
+      <td>cvc</td>
+      <td><input type="text" ng-model="cvc" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="button" value="Provision" ng-click="provisionForMarketPlace()" />
+      </td>
+    </tr>
+    <tr>
+      <td>referenceNumber</td>
+      <td><input type="text" ng-model="referenceNumber" /></td>
+    </tr>
+  </table>
+
+</div>

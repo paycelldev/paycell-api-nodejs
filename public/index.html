@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body ng-app="paycell">
+
+  <table>
+    <tr>
+      <td>Request Method</td>
+      <td><select ng-model="$root.requestMethod" ng-options="x for x in ['rest','soap']">
+        </select></td>
+      <td> 3D Secure Enabled: </td>
+      <td>
+        <input type="checkbox" ng-model="$root.threeDSecureEnabled" />
+      </td>
+    </tr>
+  </table>
+  <div class="panel-group" id="accordion">
+    <!-- QueryCards Tab -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#queryCardsTab">Card Management</a>
+        </h4>
+      </div>
+      <div id="queryCardsTab" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div ng-include="'components/queryCards.htm'"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Provision Tab -->
+    <div ng-show="selectedCard" class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#provisionTab">Provision</a>
+        </h4>
+      </div>
+      <div id="provisionTab" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div ng-include="'components/provision.htm'"></div>
+        </div>
+      </div>
+    </div>
+    <!-- ProvisionForMarketPlace Tab -->
+    <div ng-show="selectedCard" class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#provisionForMarketPlaceTab">Provision
+            for Market
+            Place</a>
+        </h4>
+      </div>
+      <div id="provisionForMarketPlaceTab" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div ng-include="'components/provisionForMarketPlace.htm'"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Inquire Tab -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#inquireTab">Inquire</a>
+        </h4>
+      </div>
+      <div id="inquireTab" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div ng-include="'components/inquire.htm'"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Provision History Tab -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#provisionHistoryTab">Provision History</a>
+        </h4>
+      </div>
+      <div id="provisionHistoryTab" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div ng-include="'components/provisionHistory.htm'"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Summary Reconcilation Tab -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#summaryReconciliationTab">Summary Reconcilation</a>
+        </h4>
+      </div>
+      <div id="summaryReconciliationTab" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div ng-include="'components/summaryReconciliation.htm'"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/javascript" src="./Consts.js"></script>
+  <script type="application/javascript" src="./utils/CardTokenUtil.js"></script>
+  <script type="application/javascript" src="./utils/ThreeDSecureUtil.js"></script>
+  <script type="application/javascript" src="./PaycellApp.js"></script>
+  <script type="application/javascript" src="./controllers/QueryCardsController.js"></script>
+  <script type="application/javascript" src="./controllers/ProvisionController.js"></script>
+  <script type="application/javascript" src="./controllers/ProvisionForMarketPlaceController.js"></script>
+  <script type="application/javascript" src="./controllers/InquireController.js"></script>
+  <script type="application/javascript" src="./controllers/SummaryReconciliationController.js"></script>
+  <script type="application/javascript" src="./controllers/ProvisionHistoryController.js"></script>
+
+
+</body>
+
+</html>

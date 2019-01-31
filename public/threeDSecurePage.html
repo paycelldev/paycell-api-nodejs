@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+
+<body>
+  <form id="threeDSecureForm" name="threeDSecureForm" method="post" style="display: none;" action="https://omccstb.turkcell.com.tr/paymentmanagement/rest/threeDSecure">
+    <table>
+      <tr>
+        <td>threeDSessionId :</td>
+        <td><input id="threeDSessionId" type="text" name="threeDSessionId" /></td>
+      </tr>
+      <tr>
+        <td>callbackUrl :</td>
+        <td><input id="callbackUrl" type="text" name="callbackUrl" /></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input id="submit" type="submit" name="submit" Value="Post 3D" /></td>
+      </tr>
+
+    </table>
+  </form>
+  <script>
+    let searchParams = new URLSearchParams(window.location.search);
+    document.getElementById("threeDSessionId").value = searchParams
+      .get('threeDSessionId');
+    document.getElementById("callbackUrl").value = searchParams
+      .get('callbackUrl');
+    document.getElementById("submit").click();
+  </script>
+</body>
+
+</html>

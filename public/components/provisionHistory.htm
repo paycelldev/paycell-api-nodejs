@@ -1,0 +1,47 @@
+<div ng-controller="provisionHistoryController">
+  <table>
+    <tr>
+      <td>reconciliationDate</td>
+      <td><input type="text" ng-model="reconciliationDate" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="button" value="Get Provision History" ng-click="getProvisionHistory()" />
+      </td>
+    </tr>
+  </table>
+
+  <br />
+  <table class="table table-bordered" ng-show="transactionList">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>transactionDateTime</th>
+        <th>orderId</th>
+        <th>acquirerBankCode</th>
+        <th>approvalCode</th>
+        <th>issuerBankCode</th>
+        <th>amount</th>
+        <th>netAmount</th>
+        <th>referenceNumber</th>
+        <th>transactionId</th>
+        <th>transactionParams</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="transaction in transactionList">
+        <td>{{$index+1}}</td>
+        <td>{{transaction.transactionDateTime}}</td>
+        <td>{{transaction.orderId}}</td>
+        <td>{{transaction.acquirerBankCode}}</td>
+        <td>{{transaction.approvalCode}}</td>
+        <td>{{transaction.issuerBankCode}}</td>
+        <td>{{transaction.amount}}</td>
+        <td>{{transaction.netAmount}}</td>
+        <td>{{transaction.referenceNumber}}</td>
+        <td>{{transaction.transactionId}}</td>
+        <td>{{transaction.transactionParams}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

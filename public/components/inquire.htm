@@ -1,0 +1,65 @@
+<div ng-controller="inquireController">
+
+  <table>
+    <tr>
+      <td>originalReferenceNumber</td>
+      <td><input type="text" ng-model="originalReferenceNumber" /></td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" value="Inquire" ng-click="inquire()" />
+      </td>
+      <td ng-show="status == 'SALE'">
+        <input type="button" value="Reverse" ng-click="reverse()" />
+      </td>
+      <td ng-show="status == 'SALE' || status == 'REFUND'">
+        <input type="number" ng-model="refundAmount" />
+        <input type="button" value="Refund" ng-click="refund()" />
+      </td>
+    </tr>
+  </table>
+
+  <br />
+  <table ng-show="orderId">
+    <tr>
+      <td>orderId</td>
+      <td><input type="text" ng-model="orderId" /></td>
+    </tr>
+    <tr>
+      <td>acquirerBankCode</td>
+      <td><input type="text" ng-model="acquirerBankCode" /></td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td><input type="text" ng-model="status" /></td>
+    </tr>
+  </table>
+
+  <br />
+  <table ng-show="provisionList" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>provisionType</th>
+        <th>transactionId</th>
+        <th>amount</th>
+        <th>approvalCode</th>
+        <th>dateTime</th>
+        <th>reconciliationDate</th>
+        <th>responseCode</th>
+        <th>responseDescription</th>
+      </tr>
+    </thead>
+    <tr ng-repeat="provision in provisionList">
+      <td>{{provision.provisionType}}</td>
+      <td>{{provision.transactionId}}</td>
+      <td>{{provision.amount}}</td>
+      <td>{{provision.approvalCode}}</td>
+      <td>{{provision.dateTime}}</td>
+      <td>{{provision.reconciliationDate}}</td>
+      <td>{{provision.responseCode}}</td>
+      <td>{{provision.responseDescription}}</td>
+    </tr>
+  </table>
+
+
+</div>

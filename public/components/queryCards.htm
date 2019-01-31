@@ -1,0 +1,104 @@
+<div ng-controller="queryCardsController">
+  <!-- QueryCards-->
+  <table>
+    <tr>
+      <td>Msisdn: </td>
+      <td>
+        <input type="number" ng-model="$root.msisdn" minlength="12" maxlength="12" />
+      </td>
+      <td>
+        <input type="button" ng-click="queryCards()" value="Get Cards" />
+      </td>
+    </tr>
+  </table>
+  <table ng-show="cardList" class="table table-bordered">
+    <br />
+    <thead>
+      <tr>
+        <th>cardId</th>
+        <th>maskedCardNo</th>
+        <th>alias</th>
+        <th>cardBrand</th>
+        <th>isDefault</th>
+        <th>isExpired</th>
+        <th>showEulaId</th>
+        <th>isThreeDValidated</th>
+        <th>isOTPValidated</th>
+        <th>activationDate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="cardItem in cardList" ng-click="selectCard(cardItem)" ng-class="{'success': selectedCard.cardId == cardItem.cardId}">
+        <td>{{ cardItem.cardId }}</td>
+        <td>{{ cardItem.maskedCardNo }}</td>
+        <td ng-hide="cardItem.editMode">{{ cardItem.alias }}</td>
+        <td ng-show="cardItem.editMode">
+          <input type="text" ng-model="cardItem.alias" />
+        </td>
+        <td>{{ cardItem.cardBrand }}</td>
+        <td>
+          <input type="checkbox" ng-model="cardItem.isDefault" ng-disabled="!cardItem.editMode" />
+        </td>
+        <td>
+          <input type="checkbox" ng-model=cardItem.isExpired ng-disabled="true" />
+        </td>
+        <td>
+          <input type="checkbox" ng-model="cardItem.showEulaId" ng-disabled="true" />
+        </td>
+        <td>
+          <input type="checkbox" ng-model="cardItem.isThreeDValidated" ng-disabled="true" />
+        </td>
+        <td>
+          <input type="checkbox" ng-model="cardItem.isOTPValidated" ng-disabled="true" />
+        </td>
+        <td>
+          <input type="checkbox" ng-model="cardItem.activationDate" ng-disabled="true" />
+        </td>
+        <td ng-hide="cardItem.editMode">
+          <input type="button" value="Edit" ng-click="enableEditModeForCard(cardItem)" />
+        </td>
+        <td ng-show="cardItem.editMode">
+          <input type="button" value="Update" ng-click="updateCard(cardItem)" />
+        </td>
+        <td>
+          <input type="button" value="Delete" ng-click="deleteCard(cardItem)" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table ng-show="msisdn">
+    <br />
+    <tr>
+      <td>alias</td>
+      <td><input type="text" ng-model="customCard.alias" /></td>
+    </tr>
+    <tr>
+      <td>cardNo</td>
+      <td><input type="text" maxlength="16" minlength="16" ng-model="customCard.cardNo" /></td>
+    </tr>
+    <tr>
+      <td>expireDate</td>
+      <td>
+        <input type="text" minlength="2" maxlength="2" ng-model="customCard.expireDate.month" />
+        <input type="text" minlength="2" maxlength="2" ng-model="customCard.expireDate.year" />
+      </td>
+    </tr>
+    <tr>
+      <td>cvc</td>
+      <td><input type="text" minlength="3" maxlength="3" ng-model="customCard.cvc" /></td>
+    </tr>
+    <tr>
+      <td>isDefault</td>
+      <td><input type="checkbox" ng-model="customCard.isDefault" /></td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" value="Select" ng-click="selectCustomCard()" />
+      </td>
+      <td>
+        <input type="button" value="Register" ng-click="registerCard()" />
+      </td>
+    </tr>
+  </table>
+
+</div>
