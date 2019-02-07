@@ -32,6 +32,7 @@ module.exports.provision = function (req, res) {
     cardId: req.body.cardId,
     cardToken: req.body.cardToken,
     amount: req.body.amount,
+    installmentCount: req.body.installmentCount,
     currency: req.body.currency,
     paymentType: req.body.paymentType,
     threeDSessionId: req.body.threeDSessionId

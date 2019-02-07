@@ -3,6 +3,9 @@ app.controller('queryCardsController', function ($rootScope, $scope, $http) {
     expireDate: {}
   }
 
+  $scope.eulaTextTR = "<div></div>"
+  $scope.eulaTextEN = "<div></div>"
+
   /**
    * Verilen bilgilere ait kartlar servisten sorgulanır.
    */
@@ -18,6 +21,57 @@ app.controller('queryCardsController', function ($rootScope, $scope, $http) {
         alert(response.data.responseHeader.responseDescription);
       }
     })
+    $http({
+      method: "POST",
+      url: "/api/" + $rootScope.requestMethod + "/getTermsOfServiceContent",
+      data: { msisdn: $rootScope.msisdn }
+    }).then(function (response) {
+      if (response.data.responseHeader.responseCode == 0) {
+        $scope.eulaId = response.data.eulaId
+        $scope.eulaTextTR = response.data.termsOfServiceHtmlContentTR
+        $scope.eulaTextEN = response.data.termsOfServiceHtmlContentEN
+      } else {
+        alert(response.data.responseHeader.responseDescription);
+      }
+    })
+  }
+
+  /**
+   * Eula ekranını gösterir
+   * Action fonksiyonu eula kabul edilirse çağrılır
+   */
+  $scope.showEula = function (validate, action) {
+    if (validate && !validate()) return;
+    $scope.eulaAcceptedAction = action;
+    $http({
+      method: "POST",
+      url: "/api/" + $rootScope.requestMethod + "/getTermsOfServiceContent",
+      data: { msisdn: $rootScope.msisdn }
+    }).then(function (response) {
+      if (response.data.responseHeader.responseCode == 0) {
+        $scope.eulaId = response.data.eulaId
+        $scope.eulaTextTR = response.data.termsOfServiceHtmlContentTR
+        $scope.eulaTextEN = response.data.termsOfServiceHtmlContentEN
+        $scope.isEulaVisible = true;
+      } else {
+        alert(response.data.responseHeader.responseDescription);
+      }
+    })
+  }
+
+  /**
+   * Eula ekranını kapatır ve kabul aksiyonunu çağırır
+   */
+  $scope.acceptEula = function () {
+    $scope.isEulaVisible = false;
+    $scope.eulaAcceptedAction();
+  }
+
+  /**
+   * Eula ekranını kapatır
+   */
+  $scope.cancelEula = function () {
+    $scope.isEulaVisible = false;
   }
 
   /**
@@ -26,6 +80,36 @@ app.controller('queryCardsController', function ($rootScope, $scope, $http) {
   $scope.selectCard = function (card) {
     console.log("selected card: " + card.cardId)
     $rootScope.selectedCard = card;
+  }
+
+  $scope.validateCustomCard = function () {
+    if (!$scope.customCard) {
+      alert("Enter card info!")
+      return false;
+    }
+    if (!$scope.customCard.alias) {
+      alert("Enter card alias!")
+      return false;
+    }
+    if (!$scope.customCard.cardNo) {
+      alert("Enter card no!")
+      return false;
+    }
+    if (!$scope.customCard.expireDate
+      || !$scope.customCard.expireDate.month
+      || !$scope.customCard.expireDate.year) {
+      alert("Enter expire date!")
+      return false;
+    }
+    if ($scope.customCard.expireDate.month <= 0 || $scope.customCard.expireDate.month > 12) {
+      alert("Enter a valid expire month!")
+      return false;
+    }
+    if (!$scope.customCard.cvc) {
+      alert("Enter cvc!")
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -79,7 +163,8 @@ app.controller('queryCardsController', function ($rootScope, $scope, $http) {
         isDefault: $scope.customCard.isDefault,
         cardToken: token,
         msisdn: $rootScope.msisdn,
-        threeDSessionId
+        threeDSessionId,
+        eulaId: $scope.eulaId
       }
     }).then(function (response) {
       alert(response.data.responseHeader.responseDescription)
@@ -123,11 +208,11 @@ app.controller('queryCardsController', function ($rootScope, $scope, $http) {
   /**
    * Seçilen kart bilgileri sistemde güncellenir
    */
-  $scope.updateCard = function (card) {
+  $scope.updateCard = function () {
     if ($rootScope.threeDSecureEnabled) {
       threeDSecure.getThreeDSession(
         $rootScope.msisdn,
-        card.cardId,
+        $rootScope.selectedCard.cardId,
         undefined,
         1, 0,
         $rootScope.requestMethod,
@@ -137,10 +222,10 @@ app.controller('queryCardsController', function ($rootScope, $scope, $http) {
           console.log("threeDSessionId: " + response.threeDSessionId)
         },
         function (threeDSessionId) {
-          $scope.sendUpdateCardRequest(card, threeDSessionId)
+          $scope.sendUpdateCardRequest($rootScope.selectedCard, threeDSessionId)
         })
     } else {
-      $scope.sendUpdateCardRequest(card, undefined)
+      $scope.sendUpdateCardRequest($rootScope.selectedCard, undefined)
     }
   }
 
@@ -156,6 +241,7 @@ app.controller('queryCardsController', function ($rootScope, $scope, $http) {
         cardId: card.cardId,
         alias: card.alias,
         isDefault: card.isDefault,
+        eulaId: $scope.eulaId,
         threeDSessionId
       }
     }).then(function (response) {

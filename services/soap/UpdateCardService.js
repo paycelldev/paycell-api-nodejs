@@ -1,4 +1,4 @@
-const { applicationName, applicationPassword, eulaId, referenceNumberPrefix, soapUrl } = require('../../Consts')
+const { applicationName, applicationPassword, referenceNumberPrefix, soapUrl } = require('../../Consts')
 
 var moment = require("moment")
 var devLogger = require("debug")("dev")
@@ -19,7 +19,7 @@ module.exports.updateCard = function (req, res) {
     },
     alias: req.body.alias,
     cardId: req.body.cardId,
-    eulaId,
+    eulaId: req.body.eulaId,
     isDefault: req.body.isDefault,
     msisdn: String(req.body.msisdn),
     threeDSessionId: req.body.threeDSessionId ? String(req.body.threeDSessionId) : undefined

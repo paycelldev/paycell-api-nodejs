@@ -10,6 +10,7 @@ var { refund } = require('../services/rest/RefundService')
 var { reverse } = require('../services/rest/ReverseService')
 var { summaryReconciliation } = require('../services/rest/SummaryReconciliationService')
 var { getProvisionHistory } = require('../services/rest/ProvisionHistoryService')
+var { getTermsOfServiceContent } = require('../services/rest/GetTermsOfServiceContentService')
 
 module.exports = function (app) {
   app.route("/api/rest/queryCards")
@@ -38,4 +39,6 @@ module.exports = function (app) {
     .post(summaryReconciliation)
   app.route("/api/rest/getProvisionHistory")
     .post(getProvisionHistory)
+  app.route("/api/rest/getTermsOfServiceContent")
+    .post(getTermsOfServiceContent)
 }

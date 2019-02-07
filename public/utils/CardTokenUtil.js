@@ -53,6 +53,8 @@ var cardTokenUtil = {
             function (hashData) {
               cardTokenUtil.hashResponseCallback(response, hashData, cardTokenCallback);
             });
+        } else {
+          alert(response.header.responseDescription)
         }
       });
   },

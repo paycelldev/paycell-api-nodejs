@@ -10,6 +10,7 @@ var { refund } = require('../services/soap/RefundService')
 var { getProvisionHistory } = require('../services/soap/ProvisionHistoryService')
 var { summaryReconciliation } = require('../services/soap/SummaryReconciliationService')
 var { getThreeDSession, getThreeDSessionResult } = require('../services/soap/ThreeDSecureService')
+var { getTermsOfServiceContent } = require('../services/soap/GetTermsOfServiceContentService')
 
 module.exports = function (app) {
   app.route("/api/soap/queryCards")
@@ -38,4 +39,6 @@ module.exports = function (app) {
     .post(getThreeDSession);
   app.route("/api/soap/getThreeDSessionResult")
     .post(getThreeDSessionResult);
+  app.route("/api/soap/getTermsOfServiceContent")
+    .post(getTermsOfServiceContent)
 }

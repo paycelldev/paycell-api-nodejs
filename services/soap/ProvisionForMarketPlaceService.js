@@ -25,6 +25,7 @@ module.exports.provisionForMarketPlace = function (req, res) {
     },
     merchantCode,
     amount: req.body.amount,
+    installmentCount: req.body.installmentCount,
     cardId: req.body.cardId,
     currency: req.body.currency,
     msisdn: String(req.body.msisdn).substring(2),

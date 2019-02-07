@@ -1,4 +1,4 @@
-const { applicationPassword, applicationName, eulaId, referenceNumberPrefix, restUrl } = require('../../Consts')
+const { applicationPassword, applicationName, referenceNumberPrefix, restUrl } = require('../../Consts')
 
 var moment = require('moment')
 var request = require('request')
@@ -18,7 +18,7 @@ module.exports.registerCard = function (req, res) {
     },
     alias: req.body.alias,
     cardToken: req.body.cardToken,
-    eulaId: String(eulaId),
+    eulaId: req.body.eulaId,
     isDefault: req.body.isDefault,
     msisdn: String(req.body.msisdn),
     threeDSessionId: req.body.threeDSessionId ? String(req.body.threeDSessionId) : undefined

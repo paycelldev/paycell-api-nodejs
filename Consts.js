@@ -1,7 +1,6 @@
 module.exports.applicationName = "PAYCELLTEST"
 module.exports.applicationPassword = "PaycellTestPassword"
 module.exports.secureCode = "PAYCELL12345"
-module.exports.eulaId = "17"
 module.exports.merchantCode = "9998"
 module.exports.referenceNumberPrefix = "001"
 
@@ -22,4 +21,5 @@ module.exports.restUrl = {
   getThreeDSessionResult: "https://tpay-test.turkcell.com.tr/tpay/provision/services/restful/getCardToken/getThreeDSessionResult/",
   getProvisionHistory: "https://tpay-test.turkcell.com.tr/tpay/provision/services/restful/getCardToken/getProvisionHistory",
   provisionForMarketPlace: "https://tpay-test.turkcell.com.tr/tpay/provision/services/restful/getCardToken/provisionForMarketPlace/",
+  getTermsOfServiceContent: "https://tpay-test.turkcell.com.tr/tpay/provision/services/restful/getCardToken/getTermsOfServiceContent/",
 }
