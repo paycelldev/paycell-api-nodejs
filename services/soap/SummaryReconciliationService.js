@@ -30,7 +30,15 @@ module.exports.summaryReconciliation = function (req, res) {
     totalReverseAmount: req.body.totalReverseAmount,
     totalReverseCount: req.body.totalReverseCount,
     totalSaleAmount: req.body.totalSaleAmount,
-    totalSaleCount: req.body.totalSaleCount
+    totalSaleCount: req.body.totalSaleCount,
+
+    totalPostAuthAmount: req.body.totalPostAuthAmount,
+    totalPostAuthCount: req.body.totalPostAuthCount,
+    totalPostAuthReverseAmount: req.body.totalPostAuthReverseAmount,
+    totalPostAuthReverseCount: req.body.totalPostAuthReverseCount,
+    totalPreAuthAmount: req.body.totalPreAuthAmount,
+    totalPreAuthReverseAmount: req.body.totalPreAuthReverseAmount,
+    totalPreAuthReverseCount: req.body.totalPreAuthReverseCount
   }
   devLogger("SummaryReconciliation SOAP request: " + JSON.stringify(data, null, 2))
   soap.createClient(soapUrl, function (error, client) {

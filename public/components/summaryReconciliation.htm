@@ -1,56 +1,125 @@
 <div ng-controller="summaryReconcilationController">
-  <table class="table table-bordered">
-    <tr>
-      <thead>
+    <table class="table table-bordered">
         <tr>
-          <th colspan="2">Merchant Information</th>
-          <th colspan="2">System Information</th>
-        </tr>
-      </thead>
-      <tbody>
+        <thead>
+            <tr>
+                <th colspan="2">Merchant Information</th>
+                <th colspan="2">System Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>reconciliationDate</td>
+                <td><input type="text" ng-model="reconciliationDate" /></td>
+                <td>reconcliationResult</td>
+                <td><input type="text" ng-model="reconciliationResult" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>totalSaleAmount</td>
+                <td><input type="text" ng-model="totalSaleAmount" /></td>
+                <td>totalSaleAmount</td>
+                <td><input type="text" readonly="true" ng-model="systemTotalSaleAmount" /></td>
+            </tr>
+            <tr>
+                <td>totalReverseAmount</td>
+                <td><input type="text" ng-model="totalReverseAmount" /></td>
+                <td>totalReverseAmount</td>
+                <td><input type="text" readonly="true" ng-model="systemTotalReverseAmount" /></td>
+            </tr>
+            <tr>
+                <td>totalRefundAmount</td>
+                <td><input type="text" ng-model="totalRefundAmount" /></td>
+                <td>totalRefundAmount</td>
+                <td><input type="text" readonly="true" ng-model="systemTotalRefundAmount" /></td>
+            </tr>
+            <tr>
+                <td>totalSaleCount</td>
+                <td><input type="text" ng-model="totalSaleCount" /></td>
+                <td>totalSaleCount</td>
+                <td><input type="text" readonly="true" ng-model="systemTotalSaleCount" /></td>
+            </tr>
+            <tr>
+                <td>totalReverseCount</td>
+                <td><input type="text" ng-model="totalReverseCount" /></td>
+                <td>totalReverseCount</td>
+                <td><input type="text" readonly="true" ng-model="systemTotalReverseCount" /></td>
+            </tr>
+            <tr>
+                <td>totalRefundCount</td>
+                <td><input type="text" ng-model="totalRefundCount" /></td>
+                <td>totalRefundCount</td>
+                <td><input type="text" readonly="true" ng-model="systemTotalRefundCount" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered">
         <tr>
-          <td>reconciliationDate</td>
-          <td><input type="text" ng-model="reconciliationDate" /></td>
-          <td>reconcliationResult</td>
-          <td><input type="text" ng-model="reconciliationResult" readonly="true" /></td>
-        </tr>
-        <tr>
-          <td>totalSaleAmount</td>
-          <td><input type="text" ng-model="totalSaleAmount" /></td>
-          <td>totalSaleAmount</td>
-          <td><input type="text" readonly="true" ng-model="systemTotalSaleAmount" /></td>
-        </tr>
-        <tr>
-          <td>totalReverseAmount</td>
-          <td><input type="text" ng-model="totalReverseAmount" /></td>
-          <td>totalReverseAmount</td>
-          <td><input type="text" readonly="true" ng-model="systemTotalReverseAmount" /></td>
-        </tr>
-        <tr>
-          <td>totalRefundAmount</td>
-          <td><input type="text" ng-model="totalRefundAmount" /></td>
-          <td>totalRefundAmount</td>
-          <td><input type="text" readonly="true" ng-model="systemTotalRefundAmount" /></td>
-        </tr>
-        <tr>
-          <td>totalSaleCount</td>
-          <td><input type="text" ng-model="totalSaleCount" /></td>
-          <td>totalSaleCount</td>
-          <td><input type="text" readonly="true" ng-model="systemTotalSaleCount" /></td>
-        </tr>
-        <tr>
-          <td>totalReverseCount</td>
-          <td><input type="text" ng-model="totalReverseCount" /></td>
-          <td>totalReverseCount</td>
-          <td><input type="text" readonly="true" ng-model="systemTotalReverseCount" /></td>
-        </tr>
-        <tr>
-          <td>totalRefundCount</td>
-          <td><input type="text" ng-model="totalRefundCount" /></td>
-          <td>totalRefundCount</td>
-          <td><input type="text" readonly="true" ng-model="systemTotalRefundCount" /></td>
-        </tr>
-      </tbody>
-  </table>
-  <input type="button" value="Summary Reconcilation" ng-click="summaryReconciliation()" />
+        <thead>
+            <tr>
+                <th colspan="2">Merchant Information</th>
+                <th colspan="2">System Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Total Post Amount:  </td>
+                <td><input type="text" ng-model="totalPostAuthAmount" /></td>
+
+                <td>Response Total Post Amount:  </td>
+                <td><input type="text" ng-model="systemTotalPostAuthAmount" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Total Post Count:  </td>
+                <td><input type="text" ng-model="totalPostAuthCount" /></td>
+
+                <td>Response Total Post Count:  </td>
+                <td><input type="text" ng-model="systemTotalPostAuthCount" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Total Post Auth Reverse Amount:  </td>
+                <td><input type="text" ng-model="totalPostAuthReverseAmount" /></td>
+
+                <td>Total Post Auth Reverse Amount Res:  </td>
+                <td><input type="text" ng-model="systemTotalPostAuthReverseAmount" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Total Post Auth Reverse Count:  </td>
+                <td><input type="text" ng-model="totalPostAuthReverseCount" /></td>
+
+                <td>Total Post Auth Reverse Count:  </td>
+                <td><input type="text" ng-model="systemTotalPostAuthReverseCount" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Total Pre Auth Amount:  </td>
+                <td><input type="text" ng-model="totalPreAuthAmount" /></td>
+
+                <td>Response Total Pre Auth Amount:  </td>
+                <td><input type="text" ng-model="systemTotalPreAuthAmount" type="text" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Total Pre Auth Count:  </td>
+                <td><input type="text" ng-model="totalPreAuthCount" /></td>
+
+                <td>Response Total Pre Auth Count:  </td>
+                <td><input type="text" ng-model="systemTotalPreAuthCount" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Total Pre Auth Reverse Amount:  </td>
+                <td><input type="text" ng-model="totalPreAuthReverseAmount" /></td>
+
+                <td>Response Total Pre Auth Reverse Amount:  </td>
+                <td><input type="text" ng-model="systemTotalPreAuthReverseAmount" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Total Pre Auth Reverse Count:  </td>
+                <td><input type="text" ng-model="totalPreAuthReverseCount" /></td>
+
+                <td>Response Total Pre Auth Count:  </td>
+                <td><input type="text" ng-model="systemTotalPreAuthReverseCount" readonly="true" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <input type="button" value="Summary Reconcilation" ng-click="summaryReconciliation()" />
 </div>
